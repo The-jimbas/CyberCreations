@@ -1,0 +1,48 @@
+---
+  - name: config web VM with Docker
+    hosts: elk
+    remote_user: azadmin
+    become: true
+    tasks:
+    #use apt module
+    - name: Install docker.io
+      apt:
+        update_cache: yes
+        force_apt_get: yes
+        name: docker.io
+        state: present
+
+    - name: Install pip3
+      apt:
+        force_apt_get: yes
+        name: python3-pip
+        state: present
+
+    - name: Install phython docker module
+      pip:
+        name: docker
+        state: present
+
+    - name: use more memory
+      sysctl:
+        sysctl_set: yes
+        name: vm.max_map_count
+        value: 262144
+        state: present
+        reload: yes
+
+    - name: download and launch the sebp/elk:761 docker container
+      docker_container:
+        name: elk
+        image: sebp/elk:761
+        state: started
+        restart_policy: always
+        published_ports:
+          - 5601:5601
+          - 9200:9200
+          - 5044:5044
+
+    - name: enable service docker on boot
+      systemd:
+        name: docker
+        enabled: yes
