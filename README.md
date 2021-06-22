@@ -74,7 +74,7 @@ We have installed the following Beats on these machines:
 - Filebeat and Metricbeat
 
 These Beats allow us to collect the following information from each machine:
-- _TODO: In 1-2 sentences, explain what kind of data each beat collects, and provide 1 example of what you expect to see. E.g., `Winlogbeat` collects Windows logs, which we use to track user logon events, etc._
+- Filebeat collects and centralizes log data, and Metricbeat forwards and centralizes system monitoring data
 
 ### Using the Playbook
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
@@ -89,7 +89,7 @@ _TODO: Answer the following questions to fill in the blanks:_
 - _Which file do you update to make Ansible run the playbook on a specific machine? How do I specify which machine to install the ELK server on versus which to install Filebeat on? hosts: webservers
 - _Which URL do you navigate to in order to check that the ELK server is running?
 
-_As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+_The specific commands the user will need to run to download the playbook, update the files, etc._
 
 Make sure access is granted for Jumpbox to access Web1 and 2.
 
